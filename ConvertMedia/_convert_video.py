@@ -10,14 +10,14 @@ def convert_video():
     format = input("Choose a format to convert (e.g. mp4, webm): ")
 
     while True:
-        ss = input("Choose the start point to cut: ")
+        ss = input("Start Time: ")
         if not Seek.validate(ss):
             print("Invalidated time")
             continue
         break
 
     while True:
-        to = input("Choose the end point to cut: ")
+        to = input("End Time: ")
         if not Seek.validate(to):
             print("Invalidated time")
             continue
