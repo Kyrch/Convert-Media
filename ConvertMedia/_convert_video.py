@@ -12,14 +12,14 @@ def convert_video():
     while True:
         ss = input("Start Time: ")
         if not Seek.validate(ss):
-            print("Invalidated time")
+            print("Invalid time")
             continue
         break
 
     while True:
         to = input("End Time: ")
         if not Seek.validate(to):
-            print("Invalidated time")
+            print("Invalid time")
             continue
         break
 
