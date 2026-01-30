@@ -13,15 +13,15 @@ class RegisterKey:
         RegisterKey.add_context_menu_to_image(self)
 
     def create_video_command():
-        python_path = os.path.dirname(sys.executable) + '\python.exe'
-        script_path = os.path.dirname(os.path.abspath(__file__)) + '\_convert_video.py'
+        python_path = os.path.join(os.path.dirname(sys.executable), "python.exe")
+        script_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "_convert_video.py")
         command = f'"{python_path}" "{script_path}" "%1"'
 
         return command
     
     def create_image_command():
-        python_path = os.path.dirname(sys.executable) + '\python.exe'
-        script_path = os.path.dirname(os.path.abspath(__file__)) + '\_convert_image.py'
+        python_path = os.path.join(os.path.dirname(sys.executable), "python.exe")
+        script_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "_convert_image.py")
         command = f'"{python_path}" "{script_path}" "%1"'
 
         return command
