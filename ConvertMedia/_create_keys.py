@@ -14,20 +14,26 @@ class RegisterKey:
 
     def create_video_command():
         python_path = os.path.join(os.path.dirname(sys.executable), "python.exe")
-        script_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "_convert_video.py")
+        script_path = os.path.join(
+            os.path.dirname(os.path.abspath(__file__)), "_convert_video.py"
+        )
         command = f'"{python_path}" "{script_path}" "%1"'
 
         return command
-    
+
     def create_image_command():
         python_path = os.path.join(os.path.dirname(sys.executable), "python.exe")
-        script_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "_convert_image.py")
+        script_path = os.path.join(
+            os.path.dirname(os.path.abspath(__file__)), "_convert_image.py"
+        )
         command = f'"{python_path}" "{script_path}" "%1"'
 
         return command
 
     def create_context_menu(self):
-        key_path = r"Software\Classes\SystemFileAssociations\video\shell\ConvertVideo\Command"
+        key_path = (
+            r"Software\Classes\SystemFileAssociations\video\shell\ConvertVideo\Command"
+        )
         key = winreg.CreateKey(winreg.HKEY_CURRENT_USER, key_path)
 
         winreg.SetValueEx(key, "", 0, winreg.REG_SZ, self.video_command)
@@ -36,10 +42,22 @@ class RegisterKey:
         subprocess.call(["ie4uinit.exe", "-show"])
 
     def add_context_menu_to_video_formats(self):
-        formats = ['.webm', '.mp4', '.mkv', '.mov', '.avi', '.wmv', '.avchd', '.flv', '.f4v', '.swf', '.m2ts']
+        formats = [
+            ".webm",
+            ".mp4",
+            ".mkv",
+            ".mov",
+            ".avi",
+            ".wmv",
+            ".avchd",
+            ".flv",
+            ".f4v",
+            ".swf",
+            ".m2ts",
+        ]
 
         for format in formats:
-            key_path = fr"Software\Classes\SystemFileAssociations\{format}\shell\ConvertVideo\Command"
+            key_path = rf"Software\Classes\SystemFileAssociations\{format}\shell\ConvertVideo\Command"
             key = winreg.CreateKey(winreg.HKEY_CURRENT_USER, key_path)
 
             winreg.SetValueEx(key, "", 0, winreg.REG_SZ, self.video_command)
@@ -47,10 +65,12 @@ class RegisterKey:
 
         subprocess.call(["ie4uinit.exe", "-show"])
 
-        print('Keys created for videos')
+        print("Keys created for videos")
 
     def add_context_menu_to_image(self):
-        key_path = r"Software\Classes\SystemFileAssociations\image\shell\ConvertImage\Command"
+        key_path = (
+            r"Software\Classes\SystemFileAssociations\image\shell\ConvertImage\Command"
+        )
         key = winreg.CreateKey(winreg.HKEY_CURRENT_USER, key_path)
 
         winreg.SetValueEx(key, "", 0, winreg.REG_SZ, self.image_command)
@@ -58,7 +78,8 @@ class RegisterKey:
 
         subprocess.call(["ie4uinit.exe", "-show"])
 
-        print('Keys created for images')
+        print("Keys created for images")
+
 
 if __name__ == "__main__":
     RegisterKey()

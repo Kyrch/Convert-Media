@@ -24,10 +24,11 @@ def convert_video():
         break
 
     seek = Seek(input_file, ss, to)
-    output_file = input_file.split('.')[0] + "." + format
+    output_file = input_file.split(".")[0] + "." + format
 
     command = f'ffmpeg {seek.get_seek_string()} "{output_file}"'
 
     subprocess.call(command, shell=True)
+
 
 convert_video()
